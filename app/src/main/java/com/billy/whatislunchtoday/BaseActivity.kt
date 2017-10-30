@@ -32,7 +32,6 @@ open class BaseActivity : AppCompatActivity() {
         super.setContentView(drawerLayout)
 
         toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
 
         setNavigationListener()
 
@@ -42,9 +41,24 @@ open class BaseActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener(object : NavigationView.OnNavigationItemSelectedListener{
             override fun onNavigationItemSelected(item: MenuItem): Boolean {
                 when (item.itemId) {
-                    R.id.lunch_list -> Log.i(TAG, "午餐清單")
-                    R.id.food_list -> Log.i(TAG, "菜單")
-                    R.id.drink_list -> Log.i(TAG, "飲料")
+                    R.id.lunch_list -> {
+                        var intent = Intent(this@BaseActivity, MainActivity::class.java)
+                        startActivity(intent)
+                        overridePendingTransition(0,0)
+                        finish()
+                    }
+                    R.id.food_list -> {
+                        var intent = Intent(this@BaseActivity, FoodListActivity::class.java)
+                        startActivity(intent)
+                        overridePendingTransition(0,0)
+                        finish()
+                    }
+                    R.id.drink_list -> {
+                        var intent = Intent(this@BaseActivity, DrinkActivity::class.java)
+                        startActivity(intent)
+                        overridePendingTransition(0,0)
+                        finish()
+                    }
                 }
 
 
@@ -54,6 +68,7 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     fun setUpToolbar() {
+        setSupportActionBar(toolbar)
         var toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.DrawerOpen, R.string.DrawerClose)
         drawerLayout.setDrawerListener(toggle)
         toggle.syncState()
