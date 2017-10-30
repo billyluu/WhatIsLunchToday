@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">WhatIsLunchToday</string>
+
+    <string name="lunch_list">列表</string>
+    <string name="food_list">餐點</string>
+    <string name="drink_list">飲料</string>
+
+    <string name="DrawerOpen">Open</string>
+    <string name="DrawerClose">Close</string>
+
+
+</resources>

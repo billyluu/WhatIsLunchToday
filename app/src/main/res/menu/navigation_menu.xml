@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/lunch_list"
+          android:id="@+id/lunch_list">
+    </item>
+
+    <item android:title="@string/food_list"
+          android:id="@+id/food_list">
+    </item>
+
+    <item android:title="@string/drink_list"
+          android:id="@+id/drink_list">
+    </item>
+
+</menu>
