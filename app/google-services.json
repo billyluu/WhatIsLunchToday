@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1068672731855",
+    "firebase_url": "https://whatislunchtoday.firebaseio.com",
+    "project_id": "whatislunchtoday",
+    "storage_bucket": "whatislunchtoday.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1068672731855:android:963ce4244bcd30ac",
+        "android_client_info": {
+          "package_name": "com.billy.whatislunchtoday"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1068672731855-v86sgn0a2n6985tuqs37ernqldc9dp73.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.billy.whatislunchtoday",
+            "certificate_hash": "a81cc64dc149a23c47af268608227972dda4251f"
+          }
+        },
+        {
+          "client_id": "1068672731855-7is24nc9hb8s49ouv8aco8dh9t7u6na5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZyx2wKNJSxbgX5YESYVqp9a-oOP0P6us"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1068672731855-7is24nc9hb8s49ouv8aco8dh9t7u6na5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

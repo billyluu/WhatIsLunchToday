@@ -1,6 +1,7 @@
-package com.billy.whatislunchtoday
+package com.billy.whatislunchtoday.activity
 
 import android.os.Bundle
+import com.billy.whatislunchtoday.R
 
 class MainActivity : BaseActivity() {
 
