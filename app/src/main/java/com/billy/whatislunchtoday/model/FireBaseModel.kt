@@ -45,7 +45,7 @@ class FireBaseModel() {
         myRef.child(sort).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 var map = dataSnapshot.value
-
+                Log.i(TAG, "" + map)
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
