@@ -1,5 +1,6 @@
 package com.billy.whatislunchtoday.model
 
+import android.net.Uri
 import android.util.Log
 import com.billy.whatislunchtoday.model.bean.Photo
 
@@ -44,8 +45,16 @@ class FireBaseModel() {
     fun readData(sort: String, fireBaseCallBack: FireBaseCallBack) {
         myRef.child(sort).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                var map = dataSnapshot.value
-                Log.i(TAG, "" + map)
+                var map = dataSnapshot.value as HashMap<String, String>
+                var photoList = ArrayList<Photo>()
+                for (i in map.keys){
+                    var photo = Photo()
+                    var photoMap = map.get(i) as HashMap<String, String>
+                    photo.setStoreName(photoMap.get("storeName")!!)
+                    photo.setImgUri(photoMap.get("imgUri")!!)
+                    photoList.add(photo)
+                }
+                fireBaseCallBack.onGetData(photoList)
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

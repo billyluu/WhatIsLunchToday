@@ -9,7 +9,7 @@ import android.net.Uri
 class Photo {
 
     private lateinit var storeName : String
-    private lateinit var imgUri : Uri
+    private lateinit var imgUri : String
 
     fun setStoreName(storeName : String){
         this.storeName = storeName
@@ -19,11 +19,11 @@ class Photo {
         return this.storeName
     }
 
-    fun setImgUri(imgUri: Uri) {
+    fun setImgUri(imgUri: String) {
         this.imgUri = imgUri
     }
 
-    fun getImgUri() : Uri {
+    fun getImgUri() : String {
         return this.imgUri
     }
 

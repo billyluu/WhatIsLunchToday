@@ -23,6 +23,11 @@ import android.opengl.ETC1.getWidth
 import android.R.attr.scaleHeight
 import android.R.attr.scaleWidth
 import android.graphics.Matrix
+import android.support.v7.widget.RecyclerView
+import android.view.ViewGroup
+import android.widget.TextView
+import com.billy.whatislunchtoday.model.bean.Photo
+import com.bumptech.glide.Glide
 
 
 /**
@@ -35,6 +40,10 @@ class DrinkActivity : BaseActivity() {
 
     private lateinit var progress : ProgressDialog
 
+    private lateinit var myAdapter : MyAdapter
+
+    private lateinit var recycleView : RecyclerView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,11 +52,23 @@ class DrinkActivity : BaseActivity() {
         setUpToolbar()
         setUpFab()
 
-        FireBaseModel().readData("drink", object : FireBaseModel.FireBaseCallBack{
-            override fun onGetData(list: List<*>) {
+        recycleView = findViewById(R.id.drink_recycleView)
 
+        FireBaseModel().readData("drink", object : FireBaseModel.FireBaseCallBack{
+            override fun onGetData(list: List<Photo>) {
+                Log.i(TAG, "" + list.size)
+                var photo = list.get(0).getStoreName()
+                Log.i(TAG, photo)
+
+                myAdapter = MyAdapter(list)
             }
         })
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
 
     }
 
@@ -137,39 +158,50 @@ class DrinkActivity : BaseActivity() {
 
 
 
-//    class MyAdapter : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
-//
-//        inner class ViewHolder(view : View) : RecyclerView.ViewHolder() {
-//            var drink_text : TextView
-//            var drink_img : ImageView
-//
-//            init {
-//                drink_img = view.findViewById(R.id.drink_img)
-//                drink_text = view.findViewById(R.id.drink_text)
-//            }
-//
-//        }
-//
-//        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MyAdapter.ViewHolder {
-//            var view = LayoutInflater.from(parent!!.context).inflate(R.layout.drink_list_item, parent, false)
-//            var viewHolder = ViewHolder(view)
-//
-//            return viewHolder
-//        }
-//
-//
-//
-//        override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-//
-//        }
-//
-//        override fun getItemCount(): Int {
-//
-//
-//            return 0;
-//        }
-//
-//
-//
-//    }
+    class MyAdapter(list: List<Photo>) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+        private var photoList : List<Photo>
+
+        init {
+            photoList = list
+        }
+
+        inner class ViewHolder(view : View) : RecyclerView.ViewHolder() {
+            var drink_text : TextView
+            var drink_img : ImageView
+
+            init {
+
+                drink_img = view.findViewById(R.id.drink_img)
+                drink_text = view.findViewById(R.id.drink_text)
+            }
+
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MyAdapter.ViewHolder {
+            var view = LayoutInflater.from(parent!!.context).inflate(R.layout.drink_list_item, parent, false)
+            var viewHolder = ViewHolder(view)
+
+            return viewHolder
+        }
+
+
+
+        override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
+            var photo = photoList.get(position)
+            holder!!.drink_text.setText(photo.getStoreName())
+            Glide.with(holder.itemView)
+                    .load(photo.getImgUri())
+                    .into(holder.drink_img)
+
+        }
+
+        override fun getItemCount(): Int {
+
+
+            return 0;
+        }
+
+
+
+    }
 }
