@@ -18,15 +18,13 @@ import com.billy.whatislunchtoday.R
 import com.billy.whatislunchtoday.model.FireBaseModel
 import com.billy.whatislunchtoday.model.FireBaseStorageModel
 import kotlinx.android.synthetic.main.activity_drink.*
-import android.opengl.ETC1.getHeight
-import android.opengl.ETC1.getWidth
-import android.R.attr.scaleHeight
-import android.R.attr.scaleWidth
 import android.graphics.Matrix
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import android.widget.TextView
-import com.billy.whatislunchtoday.model.bean.Photo
+import com.billy.whatislunchtoday.bean.Photo
 import com.bumptech.glide.Glide
 
 
@@ -61,6 +59,12 @@ class DrinkActivity : BaseActivity() {
                 Log.i(TAG, photo)
 
                 myAdapter = MyAdapter(list)
+                recycleView.layoutManager = GridLayoutManager(this@DrinkActivity, 1)
+                recycleView.adapter = myAdapter
+            }
+
+            override fun onNullData(msg: String) {
+                Toast.makeText(this@DrinkActivity, msg, Toast.LENGTH_SHORT).show()
             }
         })
 
@@ -73,7 +77,7 @@ class DrinkActivity : BaseActivity() {
     }
 
     private fun setUpFab() {
-        fab.setOnClickListener(object : View.OnClickListener{
+        drink_fab.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
                 var intent = Intent()
                 intent.type = "image/*"
@@ -101,9 +105,7 @@ class DrinkActivity : BaseActivity() {
 
             showDialog(view, uri)
         }
-
     }
-
 
 
     private fun showDialog(view : View, uri : Uri) {
@@ -165,14 +167,12 @@ class DrinkActivity : BaseActivity() {
             photoList = list
         }
 
-        inner class ViewHolder(view : View) : RecyclerView.ViewHolder() {
+        class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
             var drink_text : TextView
             var drink_img : ImageView
-
             init {
-
-                drink_img = view.findViewById(R.id.drink_img)
-                drink_text = view.findViewById(R.id.drink_text)
+                drink_img = itemView!!.findViewById(R.id.drink_img)
+                drink_text = itemView!!.findViewById(R.id.drink_text)
             }
 
         }
@@ -198,7 +198,7 @@ class DrinkActivity : BaseActivity() {
         override fun getItemCount(): Int {
 
 
-            return 0;
+            return photoList.size
         }
 
 

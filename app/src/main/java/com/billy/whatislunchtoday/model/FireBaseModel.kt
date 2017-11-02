@@ -1,8 +1,8 @@
 package com.billy.whatislunchtoday.model
 
-import android.net.Uri
 import android.util.Log
-import com.billy.whatislunchtoday.model.bean.Photo
+import com.billy.whatislunchtoday.bean.Lunch
+import com.billy.whatislunchtoday.bean.Photo
 
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -17,7 +17,7 @@ import kotlin.collections.HashMap
  * Created by billylu on 2017/7/12.
  */
 
-class FireBaseModel() {
+class FireBaseModel {
     private val TAG = FireBaseModel::class.java.simpleName
 
     private val database: FirebaseDatabase
@@ -45,16 +45,46 @@ class FireBaseModel() {
     fun readData(sort: String, fireBaseCallBack: FireBaseCallBack) {
         myRef.child(sort).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                var map = dataSnapshot.value as HashMap<String, String>
-                var photoList = ArrayList<Photo>()
-                for (i in map.keys){
-                    var photo = Photo()
-                    var photoMap = map.get(i) as HashMap<String, String>
-                    photo.setStoreName(photoMap.get("storeName")!!)
-                    photo.setImgUri(photoMap.get("imgUri")!!)
-                    photoList.add(photo)
+                if(dataSnapshot.value == null){
+                    fireBaseCallBack.onNullData("目前尚無資訊")
+                } else {
+                    var map = dataSnapshot.value as HashMap<String, String>
+                    var photoList = ArrayList<Photo>()
+                    for (i in map.keys){
+                        var photo = Photo()
+                        var photoMap = map.get(i) as HashMap<String, String>
+                        photo.setStoreName(photoMap.get("storeName")!!)
+                        photo.setImgUri(photoMap.get("imgUri")!!)
+                        photoList.add(photo)
+                    }
+                    fireBaseCallBack.onGetData(photoList)
                 }
-                fireBaseCallBack.onGetData(photoList)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+
+            }
+        })
+    }
+
+    fun readLunchData(sort: String, fireBaseCallBack: FireBaseCallBack2) {
+        myRef.child(sort).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if(dataSnapshot.value == null){
+                    fireBaseCallBack.onNullData("目前尚無資訊")
+                } else {
+                    var map = dataSnapshot.value as HashMap<String, String>
+                    var LunchList = ArrayList<Lunch>()
+                    for (i in map.keys){
+                        var lunch = Lunch()
+                        var lunchMap = map.get(i) as HashMap<String, String>
+                        lunch.setNickName(lunchMap.get("nickname")!!)
+                        lunch.setFood(lunchMap.get("food")!!)
+                        lunch.setDrink(lunchMap.get("drink")!!)
+                        LunchList.add(lunch)
+                    }
+                    fireBaseCallBack.onGetData(LunchList)
+                }
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -77,5 +107,11 @@ class FireBaseModel() {
 
     interface FireBaseCallBack {
         fun onGetData(list: List<Photo>)
+        fun onNullData(msg : String)
+    }
+
+    interface FireBaseCallBack2 {
+        fun onGetData(list: List<Lunch>)
+        fun onNullData(msg : String)
     }
 }

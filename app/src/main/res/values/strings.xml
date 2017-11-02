@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WhatIsLunchToday</string>
+    <string name="app_name">午餐吃什麼？</string>
 
     <string name="lunch_list">列表</string>
     <string name="food_list">餐點</string>

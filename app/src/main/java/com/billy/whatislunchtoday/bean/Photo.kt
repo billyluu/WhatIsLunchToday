@@ -1,6 +1,4 @@
-package com.billy.whatislunchtoday.model.bean
-
-import android.net.Uri
+package com.billy.whatislunchtoday.bean
 
 /**
  * Created by billylu on 2017/10/31.

@@ -5,14 +5,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    signingConfigs {
-        freeConfig {
-            keyAlias 'JWISDOM'
-            keyPassword '063035253'
-            storeFile file('C:/Users/phoenix/androidkeys.jks')
-            storePassword '063035253'
-        }
-    }
+//    signingConfigs {
+//        freeConfig {
+//            keyAlias 'JWISDOM'
+//            keyPassword '063035253'
+//            storeFile file('C:/Users/phoenix/androidkeys.jks')
+//            storePassword '063035253'
+//        }
+//    }
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.billy.whatislunchtoday"
@@ -21,7 +21,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.freeConfig
+//        signingConfig signingConfigs.freeConfig
     }
 
     buildTypes {
