@@ -37,9 +37,7 @@ class FoodListActivity : BaseActivity() {
     private val PICK_FROM_GALLERY = 100
 
     private lateinit var progress : ProgressDialog
-
     private lateinit var myAdapter : MyAdapter
-
     private lateinit var recycleView : RecyclerView
 
 
@@ -48,7 +46,6 @@ class FoodListActivity : BaseActivity() {
         setContentView(R.layout.activity_food)
 
         recycleView = findViewById(R.id.food_recyclerView)
-
 
         setUpToolbar()
         setUpFab()
@@ -68,9 +65,6 @@ class FoodListActivity : BaseActivity() {
                 Toast.makeText(this@FoodListActivity, msg, Toast.LENGTH_SHORT).show()
             }
         })
-
-
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -181,8 +175,6 @@ class FoodListActivity : BaseActivity() {
             return viewHolder
         }
 
-
-
         override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
             var photo = photoList.get(position)
             holder!!.food_text.setText(photo.getStoreName())
@@ -190,23 +182,11 @@ class FoodListActivity : BaseActivity() {
                     .load(photo.getImgUri())
                     .into(holder.food_img)
 
-//            holder!!.food_img.setOnClickListener(object : View.OnClickListener{
-//                override fun onClick(p0: View?) {
-//                    AlertDialog.Builder(mContext)
-//                            .setView()
-//                            .show()
-//                }
-//            })
-
         }
 
         override fun getItemCount(): Int {
 
-
             return photoList.size
         }
-
-
-
     }
 }

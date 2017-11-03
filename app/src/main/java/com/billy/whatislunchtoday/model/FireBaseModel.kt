@@ -93,11 +93,9 @@ class FireBaseModel {
         })
     }
 
-
     fun deleteData(key: String) {
         myRef.child(key).removeValue()
     }
-
 
     fun deleteData(date: String, child: String) {
         Log.i(TAG, date)

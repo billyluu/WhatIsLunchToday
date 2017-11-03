@@ -34,18 +34,7 @@ class FireBaseStorageModel {
         })
     }
 
-    private fun getUri() {
-
-    }
-
-//    fun fetchAllImg(sort: String, callBack: CallBack) {
-//        var imgRef = storageRef.child(sort)
-//        imgRef.downloadUrl.addOnSuccessListener { uri: Uri? ->
-//            Log.i(TAG, "" + uri)
-//        }
-//    }
-
-
+    
 
     interface UploadCallBack {
         fun onSuccess(uri: Uri)

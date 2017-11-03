@@ -37,11 +37,8 @@ class DrinkActivity : BaseActivity() {
     private val PICK_FROM_GALLERY = 100
 
     private lateinit var progress : ProgressDialog
-
     private lateinit var myAdapter : MyAdapter
-
     private lateinit var recycleView : RecyclerView
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,11 +67,6 @@ class DrinkActivity : BaseActivity() {
 
     }
 
-    override fun onResume() {
-        super.onResume()
-
-
-    }
 
     private fun setUpFab() {
         drink_fab.setOnClickListener(object : View.OnClickListener{
@@ -96,11 +88,8 @@ class DrinkActivity : BaseActivity() {
 
             var bitmap = reBitmapSize(BitmapFactory.decodeStream(cr.openInputStream(uri)))
 
-            Log.i(TAG, "bitmap: " + bitmap.height +" , "+  bitmap.width)
             var view = LayoutInflater.from(this@DrinkActivity).inflate(R.layout.select_img_layout, null)
             var imgView = view.findViewById<ImageView>(R.id.selected_img)
-
-
             imgView.setImageBitmap(bitmap)
 
             showDialog(view, uri)
@@ -152,13 +141,10 @@ class DrinkActivity : BaseActivity() {
         var matrix = Matrix()
         matrix.postScale(scaleWidth, scaleHeight)
 
-        val newbm = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix,
-                true)
+        val newbm = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true)
+
         return newbm
     }
-
-
-
 
     class MyAdapter(list: List<Photo>) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
         private var photoList : List<Photo>
@@ -184,8 +170,6 @@ class DrinkActivity : BaseActivity() {
             return viewHolder
         }
 
-
-
         override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
             var photo = photoList.get(position)
             holder!!.drink_text.setText(photo.getStoreName())
@@ -197,11 +181,7 @@ class DrinkActivity : BaseActivity() {
 
         override fun getItemCount(): Int {
 
-
             return photoList.size
         }
-
-
-
     }
 }

@@ -131,8 +131,6 @@ class MainActivity : BaseActivity() {
             return viewHolder
         }
 
-
-
         override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
             var lunch = lunchList.get(position)
             holder!!.main_nickname.setText(lunch.getNickName())
@@ -144,11 +142,7 @@ class MainActivity : BaseActivity() {
 
         override fun getItemCount(): Int {
 
-
             return lunchList.size
         }
-
-
-
     }
 }

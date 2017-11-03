@@ -60,8 +60,6 @@ open class BaseActivity : AppCompatActivity() {
                         finish()
                     }
                 }
-
-
                 return true
             }
         })
