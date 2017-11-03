@@ -13,7 +13,6 @@
         android:layout_width="320dp"
         android:layout_height="480dp"
         android:id="@+id/food_img"
-        android:background="#504564"
         android:src="@drawable/ic_launcher_foreground"
         android:layout_gravity="center"/>
 
