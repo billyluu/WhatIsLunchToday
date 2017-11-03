@@ -39,7 +39,7 @@ class MainActivity : BaseActivity() {
                 Log.i(TAG, "" + list.size)
 
                 myAdapter = MyAdapter(this@MainActivity, list)
-                recycleView.layoutManager = GridLayoutManager(this@MainActivity, 2)
+                recycleView.layoutManager = GridLayoutManager(this@MainActivity, 1)
                 recycleView.adapter = myAdapter
             }
 
