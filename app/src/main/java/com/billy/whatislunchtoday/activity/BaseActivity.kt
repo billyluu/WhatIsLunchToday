@@ -47,6 +47,12 @@ open class BaseActivity : AppCompatActivity() {
                         overridePendingTransition(0,0)
                         finish()
                     }
+                    R.id.today_menu -> {
+                        var intent = Intent(this@BaseActivity, TodayMenuActivity::class.java)
+                        startActivity(intent)
+                        overridePendingTransition(0,0)
+                        finish()
+                    }
                     R.id.food_list -> {
                         var intent = Intent(this@BaseActivity, FoodListActivity::class.java)
                         startActivity(intent)

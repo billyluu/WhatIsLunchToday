@@ -25,7 +25,6 @@ import com.billy.whatislunchtoday.bean.Photo
 import com.billy.whatislunchtoday.model.FireBaseModel
 import com.billy.whatislunchtoday.model.FireBaseStorageModel
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_drink.*
 import kotlinx.android.synthetic.main.activity_food.*
 
 /**
@@ -178,6 +177,7 @@ class FoodListActivity : BaseActivity() {
         override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
             var photo = photoList.get(position)
             holder!!.food_text.setText(photo.getStoreName())
+            holder.food_img.setDrawingCacheEnabled(true);
             Glide.with(holder.itemView)
                     .load(photo.getImgUri())
                     .into(holder.food_img)

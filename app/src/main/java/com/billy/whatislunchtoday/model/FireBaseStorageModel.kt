@@ -34,7 +34,7 @@ class FireBaseStorageModel {
         })
     }
 
-    
+
 
     interface UploadCallBack {
         fun onSuccess(uri: Uri)

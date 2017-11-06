@@ -5,6 +5,10 @@
           android:id="@+id/lunch_list">
     </item>
 
+    <item android:title="@string/today_menu"
+          android:id="@+id/today_menu">
+    </item>
+
     <item android:title="@string/food_list"
           android:id="@+id/food_list">
     </item>

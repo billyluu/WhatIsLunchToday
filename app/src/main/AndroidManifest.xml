@@ -21,6 +21,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".activity.TodayMenuActivity"
+                  android:theme="@style/AppTheme">
+        </activity>
+
         <activity android:name=".activity.FoodListActivity"
                   android:theme="@style/AppTheme">
         </activity>

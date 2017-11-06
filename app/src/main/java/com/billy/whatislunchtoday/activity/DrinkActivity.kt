@@ -1,6 +1,7 @@
 package com.billy.whatislunchtoday.activity
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
@@ -20,7 +21,6 @@ import com.billy.whatislunchtoday.model.FireBaseStorageModel
 import kotlinx.android.synthetic.main.activity_drink.*
 import android.graphics.Matrix
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import android.widget.TextView
@@ -55,7 +55,7 @@ class DrinkActivity : BaseActivity() {
                 var photo = list.get(0).getStoreName()
                 Log.i(TAG, photo)
 
-                myAdapter = MyAdapter(list)
+                myAdapter = MyAdapter(list, this@DrinkActivity)
                 recycleView.layoutManager = GridLayoutManager(this@DrinkActivity, 1)
                 recycleView.adapter = myAdapter
             }
@@ -146,10 +146,12 @@ class DrinkActivity : BaseActivity() {
         return newbm
     }
 
-    class MyAdapter(list: List<Photo>) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+    class MyAdapter(list: List<Photo>, context : Context) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+        private var context : Context
         private var photoList : List<Photo>
 
         init {
+            this.context = context
             photoList = list
         }
 
@@ -173,6 +175,7 @@ class DrinkActivity : BaseActivity() {
         override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
             var photo = photoList.get(position)
             holder!!.drink_text.setText(photo.getStoreName())
+            holder.drink_img.setDrawingCacheEnabled(true);
             Glide.with(holder.itemView)
                     .load(photo.getImgUri())
                     .into(holder.drink_img)
